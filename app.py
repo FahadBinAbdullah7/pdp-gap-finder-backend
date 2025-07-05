@@ -18,6 +18,9 @@ def init_driver():
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.binary_location = "/usr/bin/chromium"  # Adjust if needed
     return webdriver.Chrome(options=chrome_options)
 
 def fetch_text_from_url(driver, url):
@@ -78,5 +81,7 @@ def index():
         result = compare_pdps(your_text, comp_text)
     return render_template('index.html', result=result)
 
+# ✅ Render requires you to bind to 0.0.0.0 and use the $PORT environment variable
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
