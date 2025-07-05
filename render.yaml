@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: pdp-gap-finder
+    env: docker
+    plan: free
+    autoDeploy: true
