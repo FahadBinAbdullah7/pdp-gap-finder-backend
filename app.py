@@ -45,11 +45,12 @@ def compare_pdps(your_text, comp_text):
                 "parts": [
                     {
                         "text": f"""
-You are an expert in e-commerce product marketing.
+You are an expert in ed-tech product marketing.
 Compare two product display pages (PDPs) and provide:
 1. Features present on the competitor's PDP but missing on ours.
 2. Visual and messaging differences.
-3. Suggestions to improve our PDP.
+3.  Also identify any **areas where our PDP is stronger or more effective than the competitor's** (e.g. content, structure, call-to-action, credibility, design).
+4. Suggestions to improve our PDP.
 
 Our PDP content:
 {your_text[:4000]}
