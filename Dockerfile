@@ -1,14 +1,14 @@
 FROM python:3.10-slim
 
+# Install dependencies
 RUN apt-get update && apt-get install -y wget unzip curl gnupg
 
-# Install Google Chrome
+# Install Google Chrome stable (fixed version)
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb || apt-get -f install -y
 
-# Install ChromeDriver matching Chrome version with sed extraction
-RUN CHROME_VERSION=$(google-chrome --version | sed -E 's/.* ([0-9]+\.[0-9]+\.[0-9]+).*/\1/') && \
-    wget -q "https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip" && \
+# Install matching ChromeDriver (change version if you update Chrome)
+RUN wget -q https://chromedriver.storage.googleapis.com/117.0.5938.62/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/chromedriver
 
