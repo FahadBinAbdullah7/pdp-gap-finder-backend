@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import requests
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 class PDPGapFinder:
     def __init__(self, api_key):
@@ -30,7 +30,7 @@ class PDPGapFinder:
     def fetch_text_from_url(self, url):
         try:
             self.driver.get(url)
-            time.sleep(3)  # Wait for JS to load
+            time.sleep(3)
             soup = BeautifulSoup(self.driver.page_source, 'html.parser')
             for tag in soup(['script', 'style', 'noscript']):
                 tag.decompose()
@@ -76,7 +76,6 @@ Competitor's PDP content:
         else:
             return f"Error: {response.status_code} - {response.text}"
 
-# Get API key securely from environment variable
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise Exception("GEMINI_API_KEY environment variable is not set!")
