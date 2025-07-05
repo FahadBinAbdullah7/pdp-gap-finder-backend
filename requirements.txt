@@ -1,5 +1,5 @@
 flask
-requests
-beautifulsoup4
-selenium
 flask-cors
+requests
+selenium
+beautifulsoup4
