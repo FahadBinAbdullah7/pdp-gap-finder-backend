@@ -1,5 +1,4 @@
-flask
-flask-cors
-selenium
-beautifulsoup4
+Flask
 requests
+beautifulsoup4
+selenium
