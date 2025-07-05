@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDP Gap Finder</title>
+</head>
+<body>
+  <h2>PDP Gap Finder</h2>
+  <form method="POST">
+    <label>Your PDP URL:</label><br>
+    <input type="text" name="your_url" required><br><br>
+    <label>Competitor PDP URL:</label><br>
+    <input type="text" name="comp_url" required><br><br>
+    <button type="submit">Compare</button>
+  </form>
+  {% if result %}
+    <h3>Analysis Result:</h3>
+    <pre>{{ result }}</pre>
+  {% endif %}
+</body>
+</html>
