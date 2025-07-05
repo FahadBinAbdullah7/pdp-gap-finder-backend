@@ -1,30 +1,31 @@
 FROM python:3.10-slim
 
-# Install base dependencies
-RUN apt-get update && apt-get install -y wget unzip curl gnupg libnss3 libxss1 libasound2 fonts-liberation libappindicator3-1 libatk-bridge2.0-0 libxrandr2 libgbm1 libgtk-3-0 xdg-utils
+# Install required system packages
+RUN apt-get update && apt-get install -y wget unzip curl gnupg libglib2.0-0 libnss3 libgconf-2-4 libxss1 libappindicator3-1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libxrandr2 libgbm1 xdg-utils fonts-liberation ca-certificates
 
-# Install Chrome v114
-RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.90-1_amd64.deb && \
-    dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb || apt-get -fy install
+# Install Google Chrome v138.0.7204.93
+RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_138.0.7204.93-1_amd64.deb && \
+    dpkg -i google-chrome-stable_138.0.7204.93-1_amd64.deb || apt-get -f install -y
 
-# Install matching ChromeDriver v114
-RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip && \
+# Install ChromeDriver v138.0.7204.93 (matching Chrome)
+RUN wget https://chromedriver.storage.googleapis.com/138.0.7204.93/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/chromedriver
 
-# Set working directory
+# Setup working directory
 WORKDIR /app
 
-# Copy and install Python deps
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all project files
+# Copy your app code
 COPY . .
 
-# Set environment vars and start
+# Environment config for Flask
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production
 
+# Start the Flask server
 CMD ["python", "app.py"]
