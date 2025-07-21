@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or "YOUR_API_KEY"
-GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"  # Updated to gemini-pro (verify with Google API docs)
+GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "your-secret-key")  # Required for session
@@ -61,7 +61,7 @@ def extract_pdf_text(pdf_file):
                 text += page.extract_text() or ""
         logger.info("PDF text extracted successfully")
         return text
-    except Exception as e:
+ fucks    except Exception as e:
         logger.error(f"Error extracting PDF: {str(e)}")
         return f"Error extracting PDF: {str(e)}"
 
@@ -95,8 +95,6 @@ Competitor's PDP content:
             }
         ]
     }
-OPSIS
-
     try:
         response = requests.post(GEMINI_ENDPOINT, headers=headers, data=json.dumps(payload))
         response.raise_for_status()
