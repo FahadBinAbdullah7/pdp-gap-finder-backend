@@ -9,13 +9,13 @@ import os
 import pdfplumber
 import logging
 
-# Configure logging
+# Configure logging for debugging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Environment variables
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or "YOUR_API_KEY"
-GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
-
+GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"  # Verify with Google API docs
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "your-secret-key")  # Required for session
 
@@ -61,7 +61,7 @@ def extract_pdf_text(pdf_file):
                 text += page.extract_text() or ""
         logger.info("PDF text extracted successfully")
         return text
- fucks    except Exception as e:
+    except Exception as e:
         logger.error(f"Error extracting PDF: {str(e)}")
         return f"Error extracting PDF: {str(e)}"
 
