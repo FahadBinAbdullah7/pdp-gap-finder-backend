@@ -51,7 +51,7 @@ Compare two product display pages (PDPs) and provide:
 2. Visual and messaging differences.
 3.  Also identify any **areas where our PDP is stronger or more effective than the competitor's** (e.g. content, structure, call-to-action, credibility, design).
 4. Suggestions to improve our PDP.
-
+5. Based on your suggestions and after reviewing our PDP content, please rewrite the 'Course Details' section to align with the same headings and key points. Also, include a well-structured 'Frequently Asked Questions' section, ensuring clarity and relevance to our course offering."
 Our PDP content:
 {your_text[:4000]}
 
